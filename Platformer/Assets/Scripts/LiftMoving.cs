@@ -30,11 +30,11 @@ public class LiftMoving : MonoBehaviour
     {
         if (_moveForward)
         {
-            _currentLift.position = Vector3.Lerp(_liftStart.position, _liftEnd.position, _pathRunningTime / (_pathTime * Time.deltaTime));
+            _currentLift.position = Vector3.Lerp(_liftStart.position, _liftEnd.position, _pathRunningTime / _pathTime);
         }
         if (!_moveForward)
         {
-            _currentLift.position = Vector3.Lerp(_liftEnd.position, _liftStart.position, _pathRunningTime/ (_pathTime * Time.deltaTime));
+            _currentLift.position = Vector3.Lerp(_liftEnd.position, _liftStart.position, _pathRunningTime / _pathTime);
         }
     }
 
