@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         _animator.SetBool("IsJumping", false);
-        if (Input.GetKeyDown(KeyCode.Space) && _player.IsGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
             Jump();
 
         if (Input.GetKey(KeyCode.D))
@@ -49,12 +49,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        _playerBody.velocity = _jumpForce * Vector2.up;
-        _animator.SetBool("IsJumping", true);
+        if (_player.IsGrounded == false)
+        {
+            _player.CheckGround();
+        }
+        else
+        {
+            _playerBody.velocity = _jumpForce * Vector2.up;
+            _animator.SetBool("IsJumping", true);
+        }
     }
-
-    //private void Run()
-    //{
-
-    //}
 }

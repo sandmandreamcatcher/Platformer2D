@@ -1320,6 +1320,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2808d810edae7f84c90725c7df7a00b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1867187357 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2899797109177206399, guid: 16a0b2350400b454a9958baf3545b549,
+    type: 3}
+  m_PrefabInstance: {fileID: 2899797107603905935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2120291615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,8 +1622,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2899797109177206397, guid: 16a0b2350400b454a9958baf3545b549,
+        type: 3}
+      propertyPath: _floorCheckCollider
+      value: 
+      objectReference: {fileID: 2899797107603905936}
+    - target: {fileID: 2899797109177206397, guid: 16a0b2350400b454a9958baf3545b549,
+        type: 3}
+      propertyPath: _cellingCheckCollider
+      value: 
+      objectReference: {fileID: 1867187357}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16a0b2350400b454a9958baf3545b549, type: 3}
+--- !u!61 &2899797107603905936 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3999381361570288153, guid: 16a0b2350400b454a9958baf3545b549,
+    type: 3}
+  m_PrefabInstance: {fileID: 2899797107603905935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6422524487393653744
 PrefabInstance:
   m_ObjectHideFlags: 0
