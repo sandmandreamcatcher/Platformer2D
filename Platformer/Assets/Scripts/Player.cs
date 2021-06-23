@@ -8,30 +8,31 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private LayerMask _layerMask = new LayerMask();
-    private BoxCollider2D _boxCollider;
+    [SerializeField] private BoxCollider2D _cellingCheckCollider;
+    [SerializeField] private BoxCollider2D _floorCheckCollider;
     private float _castDistance = -1;
 
-    public bool IsGrounded { get; private set; } = false;
+    public bool IsGrounded { get; private set; }
 
     private void Awake()
     {
         _player = gameObject.GetComponent<Player>();
-        _boxCollider = gameObject.GetComponent<BoxCollider2D>();
     }
 
-    private void FixedUpdate()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        CheckGround();
+        IsGrounded = true;
+        Debug.Log("Я стою");
     }
 
-    private void CheckGround()
+    private void OnCollisionExit2D(Collision2D other)
     {
-        Debug.DrawRay(transform.position, Vector2.down, Color.red);
-        IsGrounded = Physics2D.BoxCast(_boxCollider.bounds.center, _boxCollider.bounds.size, 0f, Vector2.up, _castDistance, _layerMask);
+        IsGrounded = false;
+        Debug.Log("Я падаю!");
+    }
 
-        if (IsGrounded == true)
-            Debug.Log("Я стою во все ноги");
-        else
-            Debug.Log("Я не стою на земле");
+    public void CheckGround()
+    {
+        IsGrounded = Physics2D.BoxCast(_floorCheckCollider.bounds.center, _floorCheckCollider.bounds.size, 0f, Vector2.up, _castDistance, _layerMask);
     }
 }
