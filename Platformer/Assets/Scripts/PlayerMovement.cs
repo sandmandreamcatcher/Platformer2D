@@ -23,14 +23,13 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         xVelocity = 0f;
+        _animator.SetBool("IsJumping", false);
+        if (Input.GetKeyDown(KeyCode.Space))
+            Jump();
     }
 
     private void FixedUpdate()
     {
-        _animator.SetBool("IsJumping", false);
-        if (Input.GetKeyDown(KeyCode.Space))
-            Jump();
-
         if (Input.GetKey(KeyCode.D))
             xVelocity = _moveSpeed * 1f;
 

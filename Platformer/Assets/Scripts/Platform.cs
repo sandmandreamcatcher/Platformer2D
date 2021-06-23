@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+     //if (TryGetComponent<StartPoint>(out StartPoint start))
+     //   {
+     //       Debug.Log("MovePIDOR");
+     //       _moveForward = false;
+     //       _pathRunningTime = 0f;
+     //       return;
+     //   }
+
+     //   if (TryGetComponent<EndPoint>(out EndPoint end))
+     //   {
+     //       Debug.Log("MovePIDOR");
+     //       _moveForward = true;
+     //       _pathRunningTime = 0f;
+     //       Debug.Log("Move finished!");
+     //       return;
 }

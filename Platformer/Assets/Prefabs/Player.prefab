@@ -245,6 +245,8 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 512
+  _cellingCheckCollider: {fileID: 2899797109177206399}
+  _floorCheckCollider: {fileID: 3999381361570288153}
 --- !u!95 &2899797109177206396
 Animator:
   serializedVersion: 3

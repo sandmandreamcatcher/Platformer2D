@@ -22,13 +22,11 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         IsGrounded = true;
-        Debug.Log("Я стою");
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
         IsGrounded = false;
-        Debug.Log("Я падаю!");
     }
 
     public void CheckGround()
