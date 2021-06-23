@@ -7,17 +7,20 @@ public class LiftMoving : MonoBehaviour
     [SerializeField] private Transform _liftStart;
     [SerializeField] private Transform _liftEnd;
     [SerializeField] private Transform _currentLift;
-    [SerializeField] private float _pathTime = 3f;
-    [SerializeField] private float _pathRunningTime = 0f;
-    [SerializeField] private bool _moveForward = true;
-    [SerializeField] private BoxCollider2D _start;
-    [SerializeField] private BoxCollider2D _end;
-    [SerializeField] private BoxCollider2D _current;
-
+    [SerializeField] private float _pathTime = 4f;
+    private Transform _buffer;
+    private BoxCollider2D _start;
+    private BoxCollider2D _end;
+    private BoxCollider2D _current;
+    private float _pathRunningTime = 0f;
+    private bool _moveForward = true;
 
     private void Awake()
     {
+        _start = gameObject.GetComponent<BoxCollider2D>();
+        _end = gameObject.GetComponent<BoxCollider2D>();
         _current = gameObject.GetComponent<BoxCollider2D>();
+        _buffer = _currentLift;
     }
 
     private void Update()
@@ -29,59 +32,50 @@ public class LiftMoving : MonoBehaviour
     private void MoveLift()
     {
         if (_moveForward)
-        {
-            _currentLift.position = Vector3.Lerp(_liftStart.position, _liftEnd.position, _pathRunningTime / _pathTime);
-        }
-        if (!_moveForward)
-        {
-            _currentLift.position = Vector3.Lerp(_liftEnd.position, _liftStart.position, _pathRunningTime / _pathTime);
-        }
+            _currentLift.position = Vector3.Lerp(_buffer.position, _liftEnd.position, _pathRunningTime / _pathTime);
+
+        if (_moveForward == false)
+            _currentLift.position = Vector3.Lerp(_buffer.position, _liftStart.position, _pathRunningTime / _pathTime);
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log(collision.collider.gameObject.name);
-        if (collision.otherCollider.TryGetComponent<StartPoint>(out StartPoint start))
-        {
-            Debug.Log("Move finished!");
-            ChangeDirection();
-            return;
-        }
-
-        if (collision.collider.TryGetComponent<EndPoint>(out EndPoint end))
-        {
-            ChangeDirection();
-            Debug.Log("Move finished!");
-            return;
-        }
-    }
-
-    private void ChangeDirection()
-    {
-        _pathRunningTime = 0f;
-        if (_moveForward)
-            _moveForward = false;
-        else
+        if (collision.collider.TryGetComponent<StartPoint>(out StartPoint start) == true)
             _moveForward = true;
+
+        if (collision.collider.TryGetComponent<EndPoint>(out EndPoint end) == true)
+            _moveForward = false;
+
+        _buffer.position = _currentLift.position;
+        _pathRunningTime = 0f;
     }
 
     //private void OnTriggerEnter2D(Collider2D _current)
     //{
-    //if (TryGetComponent<BoxCollider2D>(out BoxCollider2D end) && end == _end)
-    //{
-    //    Debug.Log("MovePIDOR");
-    //    _moveForward = false;
-    //    _pathRunningTime = 0f;
-    //    return;
-    //}
+    //    if (_current.isTrigger && _current.TryGetComponent<StartPoint>(out StartPoint start))
+    //    {
+    //        Debug.Log("Таки старт!");
+    //        _moveForward = true;
+    //    }
+    //    if (_current.isTrigger && _current.TryGetComponent<EndPoint>(out EndPoint end))
+    //    {
+    //        Debug.Log("Таки финиш!");
+    //        _moveForward = false;
+    //    }
 
-    //if (TryGetComponent<BoxCollider2D>(out BoxCollider2D start) && start == _start)
-    //{
-    //    Debug.Log("MovePIDOR");
-    //    _moveForward = true;
+    //    _buffer.position = _currentLift.position;
     //    _pathRunningTime = 0f;
-    //    Debug.Log("Move finished!");
-    //    return;
-    //}
     //}
 }
+
+
+// Сделал 2 реализации.
+// Если использовать Колизию, то следует:
+// - убрать Флаг на триггер; 
+// - выбрать точки выхода из коллайдера (места где они выйдут - щелкнут триггер)
+// - выкрутить время 
+// Усли выбрать смену направления по тригеру:
+// - проставить Флаг на триггер;
+// - точки триггера расставить в местах смены направления
+// - выкрутить время
