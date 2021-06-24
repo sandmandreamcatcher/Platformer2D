@@ -19,7 +19,7 @@ public class Wallet : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         foreach (var coin in _coins)
         {
