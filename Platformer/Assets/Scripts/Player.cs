@@ -1,32 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(BoxCollider2D))]
-
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Player _player;
     [SerializeField] private LayerMask _layerMask = new LayerMask();
     [SerializeField] private LayerMask _deathLayerMask = new LayerMask();
     [SerializeField] private BoxCollider2D _cellingCheckCollider;
     [SerializeField] private BoxCollider2D _floorCheckCollider;
-    [SerializeField] private Animator _animator;
-    private float _castDistance = -1;
-    public bool IsDead { get; private set; }
+    [SerializeField] private Wallet _wallet;
 
+    private Player _player;
+    private Animator _animator;
+    private float _castDistance = -1;
+
+    public bool IsDead { get; private set; }
     public bool IsGrounded { get; private set; }
+
+    public void CheckGround()
+    {
+        IsGrounded = Physics2D.BoxCast(_floorCheckCollider.bounds.center, _floorCheckCollider.bounds.size, 0f, Vector2.up, _castDistance, _layerMask);
+    }
 
     private void Awake()
     {
         _player = gameObject.GetComponent<Player>();
         _animator = gameObject.GetComponent<Animator>();
-    }
-
-    public void CheckGround()
-    {
-        IsGrounded = Physics2D.BoxCast(_floorCheckCollider.bounds.center, _floorCheckCollider.bounds.size, 0f, Vector2.up, _castDistance, _layerMask);
+        _wallet = gameObject.GetComponentInChildren<Wallet>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
