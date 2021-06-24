@@ -8,12 +8,12 @@ public class LiftMoving : MonoBehaviour
     [SerializeField] private Transform _liftEnd;
     [SerializeField] private Transform _currentLift;
     [SerializeField] private float _pathTime = 4f;
+    [SerializeField] private bool _moveForward;
     private Transform _buffer;
     private BoxCollider2D _start;
     private BoxCollider2D _end;
     private BoxCollider2D _current;
     private float _pathRunningTime = 0f;
-    private bool _moveForward = true;
 
     private void Awake()
     {
@@ -33,40 +33,40 @@ public class LiftMoving : MonoBehaviour
     {
         if (_moveForward)
             _currentLift.position = Vector3.Lerp(_buffer.position, _liftEnd.position, _pathRunningTime / _pathTime);
-
         if (_moveForward == false)
             _currentLift.position = Vector3.Lerp(_buffer.position, _liftStart.position, _pathRunningTime / _pathTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.collider.gameObject.name);
-        if (collision.collider.TryGetComponent<StartPoint>(out StartPoint start) == true)
-            _moveForward = true;
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    //if (collision.collider.TryGetComponent<Player>(out Player player) == true)
+    //    //    return;
+    //    if (collision.collider.TryGetComponent<StartPoint>(out StartPoint start) == true)
+    //        _moveForward = true;
+    //    if (collision.collider.TryGetComponent<EndPoint>(out EndPoint end) == true)
+    //        _moveForward = false;
 
-        if (collision.collider.TryGetComponent<EndPoint>(out EndPoint end) == true)
+    //    Debug.Log(collision.collider.gameObject.name);
+    //    _buffer.position = _currentLift.position;
+    //    _pathRunningTime = 0f;
+    //}
+
+    private void OnTriggerEnter2D(Collider2D _current)
+    {
+        if (_current.isTrigger && _current.TryGetComponent<StartPoint>(out StartPoint start))
+        {
+            Debug.Log("Таки старт!");
+            _moveForward = true;
+        }
+        if (_current.isTrigger && _current.TryGetComponent<EndPoint>(out EndPoint end))
+        {
+            Debug.Log("Таки финиш!");
             _moveForward = false;
+        }
 
         _buffer.position = _currentLift.position;
         _pathRunningTime = 0f;
     }
-
-    //private void OnTriggerEnter2D(Collider2D _current)
-    //{
-    //    if (_current.isTrigger && _current.TryGetComponent<StartPoint>(out StartPoint start))
-    //    {
-    //        Debug.Log("Таки старт!");
-    //        _moveForward = true;
-    //    }
-    //    if (_current.isTrigger && _current.TryGetComponent<EndPoint>(out EndPoint end))
-    //    {
-    //        Debug.Log("Таки финиш!");
-    //        _moveForward = false;
-    //    }
-
-    //    _buffer.position = _currentLift.position;
-    //    _pathRunningTime = 0f;
-    //}
 }
 
 
