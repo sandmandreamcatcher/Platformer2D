@@ -12,7 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _deathLayerMask = new LayerMask();
     [SerializeField] private BoxCollider2D _cellingCheckCollider;
     [SerializeField] private BoxCollider2D _floorCheckCollider;
-    [SerializeField] private Animator _animator;
+    [SerializeField] private Wallet _wallet;
+    private Animator _animator;
     private float _castDistance = -1;
     public bool IsDead { get; private set; }
 

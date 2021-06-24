@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 4676644504269389087}
   - component: {fileID: 4676644504269389080}
   m_Layer: 0
-  m_Name: Spawne3
+  m_Name: Spawner3
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -505,7 +505,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a1f9b882cc41a41af02ebf12bf0be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinTemplate: {fileID: 0}
+  _coinTemplate: {fileID: 6422524487471583185, guid: 09d5da076abb29946b1c7d2158df72c1,
+    type: 3}
   _spawnPoints: []
 --- !u!1 &4909532016730332073
 GameObject:
@@ -606,7 +607,7 @@ GameObject:
   - component: {fileID: 3088593307635342673}
   - component: {fileID: 2906308542621866380}
   m_Layer: 0
-  m_Name: Spawner22
+  m_Name: Spawner21
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -782,7 +783,7 @@ GameObject:
   - component: {fileID: 2798821302181798090}
   - component: {fileID: 3244822119076669730}
   m_Layer: 0
-  m_Name: Spawner23
+  m_Name: Spawner22
   m_TagString: Untagged
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -884,7 +885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8360124457743135035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.72, y: 0, z: 0}
+  m_LocalPosition: {x: 20.72, y: -1.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4676644505483228021}

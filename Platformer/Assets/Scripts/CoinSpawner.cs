@@ -1,15 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _coinTemplate;
-    [SerializeField] private List <SpawnPoint> _spawnPoints;
+    private List<SpawnPoint> _spawnPoints;
 
     private void Awake()
+    {    
+        InitSpawners();
+        Create();
+    }
+
+    private void InitSpawners()
     {
-        _spawnPoints = new List<SpawnPoint>(FindObjectsOfType<SpawnPoint>()) {};
+        _spawnPoints = new List<SpawnPoint>(FindObjectsOfType<SpawnPoint>()) { };
 
         for (int i = 0; i < _spawnPoints.Count; i++)
         {
@@ -17,7 +22,7 @@ public class CoinSpawner : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Create()
     {
         for (int i = 0; i < _spawnPoints.Count; i++)
         {
