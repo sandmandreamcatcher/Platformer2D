@@ -6,12 +6,12 @@ public class CameraMove : MonoBehaviour
     [SerializeField] private Player _player = null;
     private Transform _cameraPosition;
 
-    void Awake()
+    private void Awake()
     {
         _cameraPosition = GetComponent<Transform>(); 
     }
 
-    void Update()
+    private void Update()
     {
         float xDirection = _player.transform.position.x;
         float yDirection = _player.transform.position.y / 2;

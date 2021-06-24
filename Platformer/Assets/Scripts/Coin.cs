@@ -5,7 +5,7 @@ public class Coin : MonoBehaviour
 {
     [SerializeField] private UnityEvent _collected = new UnityEvent();
 
-    public bool IsCollected { get; private set; }  
+    public bool IsCollected { get; private set; }
 
     public event UnityAction Collected
     {
@@ -19,7 +19,7 @@ public class Coin : MonoBehaviour
         {
             IsCollected = true;
             _collected.Invoke();
-            gameObject.SetActive(false);
+            gameObject.SetActive(false); 
         }
-    }
+    }   
 }

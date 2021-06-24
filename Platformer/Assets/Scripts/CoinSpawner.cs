@@ -4,6 +4,7 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _coinTemplate;
+
     private List<SpawnPoint> _spawnPoints;
 
     private void Awake()
