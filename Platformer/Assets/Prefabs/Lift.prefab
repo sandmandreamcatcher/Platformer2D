@@ -333,5 +333,4 @@ MonoBehaviour:
   _liftEnd: {fileID: 812840903880464024}
   _currentLift: {fileID: 812840904458964670}
   _pathTime: 90
-  _pathRunningTime: 0
   _moveForward: 1
