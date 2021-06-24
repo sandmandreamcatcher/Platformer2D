@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Player))]
 public class CameraMove : MonoBehaviour
@@ -13,7 +11,7 @@ public class CameraMove : MonoBehaviour
         _cameraPosition = GetComponent<Transform>(); 
     }
 
-    void FixedUpdate()
+    void Update()
     {
         float xDirection = _player.transform.position.x;
         float yDirection = _player.transform.position.y / 2;

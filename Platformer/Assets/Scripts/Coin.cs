@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
@@ -15,20 +13,13 @@ public class Coin : MonoBehaviour
         remove => _collected.RemoveListener(value);
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(IsCollected)
-        {
-            return;
-        }
-
         if (collision.TryGetComponent<Player>(out Player player)) 
         {
             IsCollected = true;
             _collected.Invoke();
             gameObject.SetActive(false);
-            Debug.Log("Еще одна монета собрана!");
         }
     }
 }

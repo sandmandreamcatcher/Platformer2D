@@ -920,7 +920,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d17b179171673784c997ec2973c3bb7c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: aff22040c50aeea45914e24badddc9a5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.151
   m_Pitch: 1
@@ -1227,50 +1227,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 18.534039}
   m_EdgeRadius: 0
---- !u!1 &774845241
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 774845243}
-  - component: {fileID: 774845242}
-  m_Layer: 0
-  m_Name: Wallet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &774845242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774845241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a6f195f721b02845a746ae3888ef6b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _coins: []
---- !u!4 &774845243
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774845241}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.96, y: 9.64, z: -18.75586}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &797303095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3109,6 +3065,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 9101605125152212945, guid: eff7cd45611e84749b02558f5e79cf21, type: 3}
     - {fileID: 9101605125152212948, guid: eff7cd45611e84749b02558f5e79cf21, type: 3}
+    - {fileID: 9101605125152212946, guid: eff7cd45611e84749b02558f5e79cf21, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eff7cd45611e84749b02558f5e79cf21, type: 3}
 --- !u!4 &2042386899 stripped
 Transform:
@@ -3570,11 +3527,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2899797109177206397, guid: 16a0b2350400b454a9958baf3545b549,
-        type: 3}
-      propertyPath: _deathLayerMask.m_Bits
-      value: 1024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16a0b2350400b454a9958baf3545b549, type: 3}

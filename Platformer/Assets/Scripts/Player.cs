@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(BoxCollider2D))]
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Player _player;
     [SerializeField] private LayerMask _layerMask = new LayerMask();
     [SerializeField] private LayerMask _deathLayerMask = new LayerMask();
     [SerializeField] private BoxCollider2D _cellingCheckCollider;
     [SerializeField] private BoxCollider2D _floorCheckCollider;
     [SerializeField] private Wallet _wallet;
+    private Player _player;
     private Animator _animator;
     private float _castDistance = -1;
     public bool IsDead { get; private set; }
@@ -23,6 +21,7 @@ public class Player : MonoBehaviour
     {
         _player = gameObject.GetComponent<Player>();
         _animator = gameObject.GetComponent<Animator>();
+        _wallet = gameObject.GetComponentInChildren<Wallet>();
     }
 
     public void CheckGround()

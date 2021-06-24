@@ -7,7 +7,7 @@ public class CoinSpawner : MonoBehaviour
     private List<SpawnPoint> _spawnPoints;
 
     private void Awake()
-    {    
+    {
         InitSpawners();
         Create();
     }
