@@ -55,12 +55,12 @@ public class LiftMoving : MonoBehaviour
     {
         if (_current.isTrigger && _current.TryGetComponent<StartPoint>(out StartPoint start))
         {
-            Debug.Log("Таки старт!");
+         //   Debug.Log("Таки старт!");
             _moveForward = true;
         }
         if (_current.isTrigger && _current.TryGetComponent<EndPoint>(out EndPoint end))
         {
-            Debug.Log("Таки финиш!");
+      //      Debug.Log("Таки финиш!");
             _moveForward = false;
         }
 
