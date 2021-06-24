@@ -2,7 +2,6 @@
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(BoxCollider2D))]
-
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask _layerMask = new LayerMask();
@@ -10,23 +9,24 @@ public class Player : MonoBehaviour
     [SerializeField] private BoxCollider2D _cellingCheckCollider;
     [SerializeField] private BoxCollider2D _floorCheckCollider;
     [SerializeField] private Wallet _wallet;
+
     private Player _player;
     private Animator _animator;
     private float _castDistance = -1;
-    public bool IsDead { get; private set; }
 
+    public bool IsDead { get; private set; }
     public bool IsGrounded { get; private set; }
+
+    public void CheckGround()
+    {
+        IsGrounded = Physics2D.BoxCast(_floorCheckCollider.bounds.center, _floorCheckCollider.bounds.size, 0f, Vector2.up, _castDistance, _layerMask);
+    }
 
     private void Awake()
     {
         _player = gameObject.GetComponent<Player>();
         _animator = gameObject.GetComponent<Animator>();
         _wallet = gameObject.GetComponentInChildren<Wallet>();
-    }
-
-    public void CheckGround()
-    {
-        IsGrounded = Physics2D.BoxCast(_floorCheckCollider.bounds.center, _floorCheckCollider.bounds.size, 0f, Vector2.up, _castDistance, _layerMask);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

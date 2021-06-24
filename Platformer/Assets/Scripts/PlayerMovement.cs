@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Range(1, 20)] [SerializeField] private float _moveSpeed = 8.6f;
     [Range(0, 80)] [SerializeField] private float _jumpForce = 50f;
-    [SerializeField] private Animator _animator;
+
+    private Animator _animator;
     private Player _player;
     private SpriteRenderer _sprite;
     private Rigidbody2D _playerBody;

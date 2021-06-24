@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    private Coin[] _coins;
+    private Coin[] _coins = new Coin[] { };
     private List<Coin> _collectedCoins;
-    private int _coinsCollected = 0;
+    private int _coinsCollected;
 
     private void Start()
     {
-        _coinsCollected = 0;
         _coins = FindObjectsOfType<Coin>();
         _collectedCoins = _coins.ToList();
 
@@ -22,10 +21,10 @@ public class Wallet : MonoBehaviour
 
     private void OnDisable()
     {
-            foreach (var coin in _coins)
-            {
-                coin.Collected -= CoinCollected;
-            }
+        foreach (var coin in _coins)
+        {
+            coin.Collected -= CoinCollected;
+        }
     }
 
     private void CoinCollected()
@@ -41,7 +40,7 @@ public class Wallet : MonoBehaviour
         }
     }
 
-   public void ShowCoinProgress()
+    public void ShowCoinProgress()
     {
         Debug.Log("Всего: " + _coinsCollected + " монеток");
     }
