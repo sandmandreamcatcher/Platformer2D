@@ -11,29 +11,29 @@ public class GameFinishConditions : MonoBehaviour
         _player = GetComponent<Player>();
         _wallet = GetComponentInChildren<Wallet>();
         _wallet.OnComplete += DeclareWinner;
-        _player.OnDeath += ReloadCurrentScene;
-    }
-
-    private void Start()
-    {
-
+        _player.OnDeath += DeclareFailure;
     }
 
     private void OnDestroy()
     {
         _wallet.OnComplete -= DeclareWinner;
-        _player.OnDeath -= ReloadCurrentScene;
+        _player.OnDeath -= DeclareFailure;
     }
 
     private void DeclareWinner()
     {
-            Debug.Log("CONGRATULATIONS! YOU ARE A WINNER!");
-            ReloadCurrentScene();
+        Debug.Log("CONGRATULATIONS! YOU ARE A WINNER!");
+        ReloadCurrentScene();
+    }
+
+    private void DeclareFailure()
+    {
+        Debug.Log("YOU ARE DEAD!");
+        ReloadCurrentScene();
     }
 
     private void ReloadCurrentScene()
     {
-        Debug.Log("YOU ARE DEAD!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

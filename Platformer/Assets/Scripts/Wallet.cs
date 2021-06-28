@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(int))]
 public class Wallet : MonoBehaviour
 {
     [SerializeField] private int _coinsCollectToWin;

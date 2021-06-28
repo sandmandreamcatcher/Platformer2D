@@ -5688,6 +5688,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 774845242, guid: 16a0b2350400b454a9958baf3545b549, type: 3}
+      propertyPath: _coinsCollectToWin
+      value: 22
+      objectReference: {fileID: 0}
     - target: {fileID: 2899797109177206369, guid: 16a0b2350400b454a9958baf3545b549,
         type: 3}
       propertyPath: m_LocalPosition.x
