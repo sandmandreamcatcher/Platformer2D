@@ -20,6 +20,7 @@ public class Wallet : MonoBehaviour
         foreach (var coin in _coins)
         {
             coin.OnCollect += CoinCollected;
+            coin.OnCollect += CheckGoalsCoins;
         }
     }
 
@@ -28,6 +29,7 @@ public class Wallet : MonoBehaviour
         foreach (var coin in _coins)
         {
             coin.OnCollect -= CoinCollected;
+            coin.OnCollect -= CheckGoalsCoins;
         }
     }
 
@@ -38,7 +40,6 @@ public class Wallet : MonoBehaviour
         {
             _collectedCoins.RemoveAt(i);
         }
-        CheckGoalsCoins();
     }
 
     private void ShowCoinProgress()
@@ -46,7 +47,7 @@ public class Wallet : MonoBehaviour
         Debug.Log("Всего: " + _coinsCollected + " монеток");
     }
 
-    private void CheckGoalsCoins()
+    private void CheckGoalsCoins(int count)
     {
         ShowCoinProgress();
 

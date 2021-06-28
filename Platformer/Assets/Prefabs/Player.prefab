@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6f195f721b02845a746ae3888ef6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinsCollectToWin: 0
+  _coinsCollectToWin: 22
 --- !u!1 &2899797108450402051
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 2899797109177206397}
   - component: {fileID: 2899797109177206396}
   - component: {fileID: 3999381361570288153}
+  - component: {fileID: 349916312}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -183,7 +184,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 2976041059057689810, guid: c483493eb3ec0f143b5d78ad823ac661,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -338,3 +339,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.21, y: 0.003}
   m_EdgeRadius: 0
+--- !u!114 &349916312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2899797109177206372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6ee4a135caf6c428a340b3a046b676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

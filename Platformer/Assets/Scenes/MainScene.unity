@@ -957,24 +957,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 9101605124863527528}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &349916303 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2899797109177206372, guid: 16a0b2350400b454a9958baf3545b549,
-    type: 3}
-  m_PrefabInstance: {fileID: 2899797107603905935}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &349916312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349916303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e6ee4a135caf6c428a340b3a046b676, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &352571204
 GameObject:
   m_ObjectHideFlags: 0
@@ -4438,7 +4420,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2899797107603905935}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349916303}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2808d810edae7f84c90725c7df7a00b5, type: 3}
@@ -5706,10 +5688,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 774845242, guid: 16a0b2350400b454a9958baf3545b549, type: 3}
-      propertyPath: _coinsCollectToWin
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2899797109177206369, guid: 16a0b2350400b454a9958baf3545b549,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5764,11 +5742,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2899797109177206370, guid: 16a0b2350400b454a9958baf3545b549,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2899797109177206372, guid: 16a0b2350400b454a9958baf3545b549,
         type: 3}
