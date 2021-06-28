@@ -1,22 +1,14 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Transform))]
 public class CameraMove : MonoBehaviour
 {
-    [SerializeField] private Player _player = null;
-    private Transform _cameraPosition;
-
-    private void Awake()
-    {
-        _cameraPosition = GetComponent<Transform>(); 
-    }
+    [SerializeField] private Player _player;
+    [SerializeField] private Transform _camera;
 
     private void Update()
     {
-        float xDirection = _player.transform.position.x;
-        float yDirection = _player.transform.position.y / 2;
-        float zDirection = -1;
-
-        _cameraPosition.position = new Vector3(xDirection, yDirection, zDirection);
+        _camera.position = new Vector3(_player.transform.position.x, _player.transform.position.y / 2, -1);
     }
 }
