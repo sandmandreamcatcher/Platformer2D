@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(GameObject))]
 public class SpawnPoint : MonoBehaviour
 {
     [SerializeField] private GameObject _template;

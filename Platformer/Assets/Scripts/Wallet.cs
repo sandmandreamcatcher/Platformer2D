@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
+    [SerializeField] private int _coinsCollectToWin;
     private Coin[] _coins = new Coin[] { };
     private List<Coin> _collectedCoins;
     private int _coinsCollected;
+
+    public delegate void GoalsCompleted();
+    public event GoalsCompleted OnComplete;
 
     private void Start()
     {
@@ -15,7 +19,7 @@ public class Wallet : MonoBehaviour
 
         foreach (var coin in _coins)
         {
-            coin.Collected += CoinCollected;
+            coin.OnCollect += CoinCollected;
         }
     }
 
@@ -23,25 +27,30 @@ public class Wallet : MonoBehaviour
     {
         foreach (var coin in _coins)
         {
-            coin.Collected -= CoinCollected;
+            coin.OnCollect -= CoinCollected;
         }
     }
 
-    private void CoinCollected()
+    private void CoinCollected(int count)
     {
+        _coinsCollected += count;
         for (int i = 0; i < _collectedCoins.Count; i++)
         {
-            if (_collectedCoins[i].IsCollected)
-            {
-                _coinsCollected++;
-                _collectedCoins.RemoveAt(i);
-                ShowCoinProgress();
-            }
+            _collectedCoins.RemoveAt(i);
         }
+        CheckGoalsCoins();
     }
 
-    public void ShowCoinProgress()
+    private void ShowCoinProgress()
     {
         Debug.Log("Всего: " + _coinsCollected + " монеток");
+    }
+
+    private void CheckGoalsCoins()
+    {
+        ShowCoinProgress();
+
+        if (_coinsCollected >= _coinsCollectToWin)
+            OnComplete?.Invoke();
     }
 }

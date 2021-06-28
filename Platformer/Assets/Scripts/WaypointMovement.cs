@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Transform))]
 public class WaypointMovement : MonoBehaviour
 {
     [SerializeField] private Transform _path;

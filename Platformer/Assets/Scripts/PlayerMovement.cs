@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,10 +13,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        _playerBody = transform.GetComponent<Rigidbody2D>();
-        _player = gameObject.GetComponent<Player>();
-        _animator = gameObject.GetComponent<Animator>();
-        _sprite = gameObject.GetComponent<SpriteRenderer>();
+        _playerBody = GetComponent<Rigidbody2D>();
+        _player = GetComponent<Player>();
+        _animator = GetComponent<Animator>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()

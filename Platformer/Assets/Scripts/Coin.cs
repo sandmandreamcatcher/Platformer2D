@@ -1,25 +1,17 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private UnityEvent _collected = new UnityEvent();
-
-    public bool IsCollected { get; private set; }
-
-    public event UnityAction Collected
-    {
-        add => _collected.AddListener(value);
-        remove => _collected.RemoveListener(value);
-    }
+    public delegate void Collected(int count);
+    public event Collected OnCollect;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Player>(out Player player)) 
+        if (collision.TryGetComponent<Player>(out Player player) && collision is CircleCollider2D) 
         {
-            IsCollected = true;
-            _collected.Invoke();
-            gameObject.SetActive(false); 
+            Debug.Log("Collected: " + gameObject.name);
+            gameObject.SetActive(false);
+            OnCollect.Invoke(1);
         }
-    }   
+    }
 }

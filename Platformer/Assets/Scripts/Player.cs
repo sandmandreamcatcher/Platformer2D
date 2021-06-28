@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(LayerMask))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
@@ -8,14 +8,15 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask _deathLayerMask = new LayerMask();
     [SerializeField] private BoxCollider2D _cellingCheckCollider;
     [SerializeField] private BoxCollider2D _floorCheckCollider;
-    [SerializeField] private Wallet _wallet;
 
-    private Player _player;
     private Animator _animator;
     private float _castDistance = -1;
 
     public bool IsDead { get; private set; }
     public bool IsGrounded { get; private set; }
+
+    public delegate void Dead();
+    public event Dead OnDeath;
 
     public void CheckGround()
     {
@@ -24,9 +25,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _player = gameObject.GetComponent<Player>();
-        _animator = gameObject.GetComponent<Animator>();
-        _wallet = gameObject.GetComponentInChildren<Wallet>();
+        _animator = GetComponent<Animator>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -45,14 +44,8 @@ public class Player : MonoBehaviour
         IsDead =_cellingCheckCollider.IsTouchingLayers(_deathLayerMask) || _floorCheckCollider.IsTouchingLayers(_deathLayerMask);
         if (IsDead)
         {
-            Debug.Log("YOU ARE DEAD!");
+            OnDeath?.Invoke();
             _animator.SetBool("PlayerDead", true);
-            ReloadCurrentScene();
         } 
-    }
-
-    private void ReloadCurrentScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6f195f721b02845a746ae3888ef6b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coinsCollectToWin: 0
 --- !u!1 &2899797108450402051
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +273,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 8.6
   _jumpForce: 50
-  _animator: {fileID: 2899797109177206396}
 --- !u!114 &2899797109177206397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2808d810edae7f84c90725c7df7a00b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 2899797109177206397}
   _layerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -294,7 +293,6 @@ MonoBehaviour:
     m_Bits: 1024
   _cellingCheckCollider: {fileID: 2899797109177206399}
   _floorCheckCollider: {fileID: 3999381361570288153}
-  _wallet: {fileID: 774845242}
 --- !u!95 &2899797109177206396
 Animator:
   serializedVersion: 3
@@ -325,7 +323,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.285}
   m_SpriteTilingProperty:

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GameObject))]
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _coinTemplate;
