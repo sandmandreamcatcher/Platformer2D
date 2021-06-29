@@ -2,7 +2,7 @@
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement _movement;
+    private PlayerMovement _movement;
     private Animator _animator;
     private Player _player;
     private SpriteRenderer _sprite;
@@ -12,15 +12,16 @@ public class PlayerAnimation : MonoBehaviour
         _player = GetComponent<Player>();
         _animator = GetComponent<Animator>();
         _sprite = GetComponent<SpriteRenderer>();
+        _movement = GetComponent<PlayerMovement>();
         _player.OnDeath += PlayDeathAnimation;
-        _player.OnJump += PlayJumpAnimation;
+        _player.OnAir += PlayJumpAnimation;
         _movement.OnRun += PlayRunAnimation;
     }
 
     private void OnDestroy()
     {
         _player.OnDeath -= PlayDeathAnimation;
-        _player.OnJump -= PlayJumpAnimation;
+        _player.OnAir -= PlayJumpAnimation;
         _movement.OnRun -= PlayRunAnimation;
     }
 

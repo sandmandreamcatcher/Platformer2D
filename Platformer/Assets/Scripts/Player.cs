@@ -16,13 +16,13 @@ public class Player : MonoBehaviour
 
     public delegate void Dead();
     public event Dead OnDeath;
-    public delegate void Jump(bool isGrounded);
-    public event Jump OnJump;
+    public delegate void Fall(bool isGrounded);
+    public event Fall OnAir;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (IsGrounded == false)
-            OnJump?.Invoke(false);
+            OnAir?.Invoke(false);
 
         CheckDeath();      
         IsGrounded = true;
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        OnJump?.Invoke(true);
+        OnAir?.Invoke(true);
         IsGrounded = false;
     }
 

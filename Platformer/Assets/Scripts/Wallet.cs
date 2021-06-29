@@ -44,16 +44,16 @@ public class Wallet : MonoBehaviour
         }
     }
 
-    private void ShowCoinProgress()
-    {
-        Debug.Log("Всего: " + _coinsCollected + " монеток");
-    }
-
     private void CheckGoalsCoins(int count)
     {
         ShowCoinProgress();
 
         if (_coinsCollected >= _coinsCollectToWin)
             OnComplete?.Invoke();
+    }
+
+    private void ShowCoinProgress()
+    {
+        Debug.Log("Всего: " + _coinsCollected + " монеток");
     }
 }

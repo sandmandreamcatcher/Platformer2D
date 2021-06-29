@@ -34,11 +34,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             xVelocity = _moveSpeed * -1f;
 
-        if (xVelocity != 0)
-            OnRun?.Invoke(Mathf.Clamp(xVelocity, -1f, 1f));
-
         if (xVelocity == 0 && Input.anyKey == false)
-            OnRun?.Invoke(0);
+            OnRun?.Invoke(0); 
+        else
+            OnRun?.Invoke(Mathf.Clamp(xVelocity, -1f, 1f));
 
         _playerBody.velocity = new Vector2(xVelocity, _playerBody.velocity.y);
     }

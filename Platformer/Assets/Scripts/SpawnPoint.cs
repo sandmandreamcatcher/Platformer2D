@@ -7,16 +7,16 @@ public class SpawnPoint : MonoBehaviour
     private void OnEnable()
     {
         _coinSpawner = GetComponentInParent<CoinSpawner>();
-        _coinSpawner.TemplateSet += SpawnTemplate;
+        _coinSpawner.ObjectToSpawn += ToSpawnTemplate;
     }
 
     private void OnDisable()
     {
         if (_coinSpawner != null)
-            _coinSpawner.TemplateSet -= SpawnTemplate;
+            _coinSpawner.ObjectToSpawn -= ToSpawnTemplate;
     }
 
-    private void SpawnTemplate(GameObject template)
+    private void ToSpawnTemplate(GameObject template)
     {
         Instantiate(template, transform.position, transform.rotation.normalized);
     }

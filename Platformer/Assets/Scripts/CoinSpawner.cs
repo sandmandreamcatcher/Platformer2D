@@ -5,10 +5,10 @@ public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _coinTemplate;
 
-    private List<SpawnPoint> _spawnPoints = new List<SpawnPoint>();
+    private List<SpawnPoint> _spawnPoints;
 
-    public delegate void SetTemplate(GameObject templateToSpawn);
-    public event SetTemplate TemplateSet;
+    public delegate void TemplateSet(GameObject templateToSpawn);
+    public event TemplateSet ObjectToSpawn;
 
     private void Awake()
     {
@@ -17,6 +17,6 @@ public class CoinSpawner : MonoBehaviour
 
     private void Start()
     {
-        TemplateSet?.Invoke(_coinTemplate);
+        ObjectToSpawn?.Invoke(_coinTemplate);
     }
 }

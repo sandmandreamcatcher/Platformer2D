@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Transform))]
+[RequireComponent(typeof(float))]
 public class WaypointMovement : MonoBehaviour
 {
     [SerializeField] private Transform _path;
     [SerializeField] private float _speed;
+
     private Transform[] _points;
     private int _currentPoint;
 
