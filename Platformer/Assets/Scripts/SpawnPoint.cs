@@ -4,13 +4,13 @@ public class SpawnPoint : MonoBehaviour
 {
     private CoinSpawner _coinSpawner;
 
-    private void Start()
+    private void OnEnable()
     {
         _coinSpawner = GetComponentInParent<CoinSpawner>();
         _coinSpawner.TemplateSet += SpawnTemplate;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if (_coinSpawner != null)
             _coinSpawner.TemplateSet -= SpawnTemplate;
