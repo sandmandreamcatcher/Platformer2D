@@ -1,17 +1,23 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(GameObject))]
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] private GameObject _template;
+    private CoinSpawner _coinSpawner;
 
-    public void SpawnTemplate()
+    private void Start()
     {
-        Instantiate(_template, transform.position, transform.rotation.normalized);
+        _coinSpawner = GetComponentInParent<CoinSpawner>();
+        _coinSpawner.TemplateSet += SpawnTemplate;
     }
 
-    public void AtachTemplate(GameObject template)
+    private void OnDestroy()
     {
-        _template = template;
+        if (_coinSpawner != null)
+            _coinSpawner.TemplateSet -= SpawnTemplate;
+    }
+
+    private void SpawnTemplate(GameObject template)
+    {
+        Instantiate(template, transform.position, transform.rotation.normalized);
     }
 }

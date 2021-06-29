@@ -16,7 +16,7 @@ TagManager:
   - PlayerCircleCollider
   - Platform
   - Enemy
-  - 
+  - ScreenBorder
   - 
   - 
   - 

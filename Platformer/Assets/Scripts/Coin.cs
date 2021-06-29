@@ -9,9 +9,8 @@ public class Coin : MonoBehaviour
     {
         if (collision.TryGetComponent<Player>(out Player player) && collision is CircleCollider2D) 
         {
-            Debug.Log("Collected: " + gameObject.name);
             gameObject.SetActive(false);
-            OnCollect.Invoke(1);
+            OnCollect?.Invoke(1);
         }
     }
 }

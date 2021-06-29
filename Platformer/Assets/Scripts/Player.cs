@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     [SerializeField] private BoxCollider2D _cellingCheckCollider;
     [SerializeField] private BoxCollider2D _floorCheckCollider;
 
-    private Animator _animator;
     private float _castDistance = -1;
 
     public bool IsDead { get; private set; }
@@ -17,35 +16,33 @@ public class Player : MonoBehaviour
 
     public delegate void Dead();
     public event Dead OnDeath;
+    public delegate void Jump(bool isGrounded);
+    public event Jump OnJump;
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (IsGrounded == false)
+            OnJump?.Invoke(false);
+
+        CheckDeath();      
+        IsGrounded = true;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        OnJump?.Invoke(true);
+        IsGrounded = false;
+    }
 
     public void CheckGround()
     {
         IsGrounded = Physics2D.BoxCast(_floorCheckCollider.bounds.center, _floorCheckCollider.bounds.size, 0f, Vector2.up, _castDistance, _layerMask);
     }
 
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        CheckDeath();
-        IsGrounded = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        IsGrounded = false;
-    }
-
     private void CheckDeath()
     {
         IsDead =_cellingCheckCollider.IsTouchingLayers(_deathLayerMask) || _floorCheckCollider.IsTouchingLayers(_deathLayerMask);
         if (IsDead)
-        {
             OnDeath?.Invoke();
-            _animator.SetBool("PlayerDead", true);
-        } 
     }
 }

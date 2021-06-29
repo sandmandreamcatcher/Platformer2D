@@ -37,6 +37,7 @@ public class Wallet : MonoBehaviour
     private void CoinCollected(int count)
     {
         _coinsCollected += count;
+
         for (int i = 0; i < _collectedCoins.Count; i++)
         {
             _collectedCoins.RemoveAt(i);
