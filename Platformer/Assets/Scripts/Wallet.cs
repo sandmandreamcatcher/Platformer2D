@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(int))]
 public class Wallet : MonoBehaviour
 {
     [SerializeField] private int _coinsCollectToWin;
@@ -10,8 +10,7 @@ public class Wallet : MonoBehaviour
     private List<Coin> _collectedCoins;
     private int _coinsCollected;
 
-    public delegate void GoalsCompleted();
-    public event GoalsCompleted OnComplete;
+    public UnityAction CoinsCollected;
 
     private void Start()
     {
@@ -20,8 +19,8 @@ public class Wallet : MonoBehaviour
 
         foreach (var coin in _coins)
         {
-            coin.OnCollect += CoinCollected;
-            coin.OnCollect += CheckGoalsCoins;
+            coin.Collected += CoinCollected;
+            coin.Collected += CheckGoalsCoins;
         }
     }
 
@@ -29,14 +28,14 @@ public class Wallet : MonoBehaviour
     {
         foreach (var coin in _coins)
         {
-            coin.OnCollect -= CoinCollected;
-            coin.OnCollect -= CheckGoalsCoins;
+            coin.Collected -= CoinCollected;
+            coin.Collected -= CheckGoalsCoins;
         }
     }
 
-    private void CoinCollected(int count)
+    private void CoinCollected()
     {
-        _coinsCollected += count;
+        _coinsCollected ++;
 
         for (int i = 0; i < _collectedCoins.Count; i++)
         {
@@ -44,12 +43,12 @@ public class Wallet : MonoBehaviour
         }
     }
 
-    private void CheckGoalsCoins(int count)
+    private void CheckGoalsCoins()
     {
         ShowCoinProgress();
 
         if (_coinsCollected >= _coinsCollectToWin)
-            OnComplete?.Invoke();
+            CoinsCollected?.Invoke();
     }
 
     private void ShowCoinProgress()

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinSpawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _coinTemplate;
+    [SerializeField] private GameObject _templateToSpawn;
 
     private List<SpawnPoint> _spawnPoints;
 
     public delegate void TemplateSet(GameObject templateToSpawn);
-    public event TemplateSet ObjectToSpawn;
+    public event TemplateSet ObjectRequired;
 
     private void Awake()
     {
@@ -17,6 +17,6 @@ public class CoinSpawner : MonoBehaviour
 
     private void Start()
     {
-        ObjectToSpawn?.Invoke(_coinTemplate);
+        ObjectRequired?.Invoke(_templateToSpawn);
     }
 }

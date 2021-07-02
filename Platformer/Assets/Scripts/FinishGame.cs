@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameFinishConditions : MonoBehaviour
+[RequireComponent(typeof(Player))]
+public class FinishGame : MonoBehaviour
 {
     private Player _player;
     private Wallet _wallet;
@@ -10,14 +11,14 @@ public class GameFinishConditions : MonoBehaviour
     {
         _player = GetComponent<Player>();
         _wallet = GetComponentInChildren<Wallet>();
-        _wallet.OnComplete += DeclareWinner;
-        _player.OnDeath += DeclareFailure;
+        _wallet.CoinsCollected += DeclareWinner;
+        _player.Dead += DeclareFailure;
     }
 
     private void OnDestroy()
     {
-        _wallet.OnComplete -= DeclareWinner;
-        _player.OnDeath -= DeclareFailure;
+        _wallet.CoinsCollected -= DeclareWinner;
+        _player.Dead -= DeclareFailure;
     }
 
     private void DeclareWinner()

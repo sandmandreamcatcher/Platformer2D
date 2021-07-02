@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
-[RequireComponent(typeof(LayerMask))]
-[RequireComponent(typeof(BoxCollider2D))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private LayerMask _layerMask = new LayerMask();
@@ -14,8 +13,7 @@ public class Player : MonoBehaviour
     public bool IsDead { get; private set; }
     public bool IsGrounded { get; private set; }
 
-    public delegate void Dead();
-    public event Dead OnDeath;
+    public UnityAction Dead; 
     public delegate void Fall(bool isGrounded);
     public event Fall OnAir;
 
@@ -43,6 +41,6 @@ public class Player : MonoBehaviour
     {
         IsDead =_cellingCheckCollider.IsTouchingLayers(_deathLayerMask) || _floorCheckCollider.IsTouchingLayers(_deathLayerMask);
         if (IsDead)
-            OnDeath?.Invoke();
+            Dead?.Invoke();
     }
 }

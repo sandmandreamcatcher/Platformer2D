@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
-    public delegate void Collected(int count);
-    public event Collected OnCollect;
+    public UnityAction Collected;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<Player>(out Player player) && collision is CircleCollider2D) 
         {
             gameObject.SetActive(false);
-            OnCollect?.Invoke(1);
+            Collected?.Invoke();
         }
     }
 }

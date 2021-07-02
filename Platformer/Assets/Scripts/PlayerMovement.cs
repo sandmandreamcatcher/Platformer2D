@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
+[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
     [Range(1, 20)] [SerializeField] private float _moveSpeed = 8.6f;
@@ -7,10 +10,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Player _player;
     private Rigidbody2D _playerBody;
-    private float xVelocity;
+    private const int _moveDirectionRight = 1;
+    private const int _moveDirectionLeft = -1;
+    private int _currentDirection = 1;
 
-    public delegate void Run(float runSpeed);
-    public event Run OnRun;
+    public float MoveSpeed => _moveSpeed;
+
+    public UnityAction Run;
+    public UnityAction Stopped;
+    public UnityAction DirectionTurned;
 
     private void Awake()
     {
@@ -20,8 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        xVelocity = 0f;
-
         if (Input.GetKeyDown(KeyCode.Space))
             Jump();
     }
@@ -29,17 +35,11 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.D))
-            xVelocity = _moveSpeed * 1f;
-
+            ToRun(_moveDirectionRight);
         if (Input.GetKey(KeyCode.A))
-            xVelocity = _moveSpeed * -1f;
-
-        if (xVelocity == 0 && Input.anyKey == false)
-            OnRun?.Invoke(0); 
-        else
-            OnRun?.Invoke(Mathf.Clamp(xVelocity, -1f, 1f));
-
-        _playerBody.velocity = new Vector2(xVelocity, _playerBody.velocity.y);
+            ToRun(_moveDirectionLeft);
+        if (_playerBody.velocity.x == 0)
+            Stopped?.Invoke();
     }
 
     private void Jump()
@@ -48,5 +48,17 @@ public class PlayerMovement : MonoBehaviour
             _player.CheckGround();
         else
             _playerBody.velocity = _jumpForce * Vector2.up;
+    }
+
+    private void ToRun(int direction)
+    {
+        if (_currentDirection != direction)
+        {
+            _currentDirection = direction;
+            DirectionTurned?.Invoke();
+        }
+
+        _playerBody.velocity = new Vector2(_moveSpeed * _currentDirection, _playerBody.velocity.y);
+        Run?.Invoke();  
     }
 }
