@@ -9,16 +9,16 @@ public class SpawnPoint : MonoBehaviour
     private void OnEnable()
     {
         _spawner = GetComponentInParent<Spawner>();
-        _spawner.ObjectRequired += ToSpawnTemplate;
+        _spawner.ObjectRequired += OnObjectRequired;
     }
 
     private void OnDisable()
     {
         if (_spawner != null)
-            _spawner.ObjectRequired -= ToSpawnTemplate;
+            _spawner.ObjectRequired -= OnObjectRequired;
     }
 
-    private void ToSpawnTemplate(GameObject template)
+    private void OnObjectRequired(GameObject template)
     {
         Instantiate(template, transform.position, transform.rotation.normalized);
         ItemSpawned?.Invoke();

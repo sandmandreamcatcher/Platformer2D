@@ -14,11 +14,9 @@ public class Player : MonoBehaviour
     public bool IsGrounded { get; private set; }
 
     public UnityAction Died;
-
-    public delegate void Fall(bool isGrounded);
-
-    public event Fall Falled;
     public UnityAction CoinCollected;
+    public delegate void Fall(bool isGrounded);
+    public event Fall Falled;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

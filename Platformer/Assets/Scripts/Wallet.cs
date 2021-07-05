@@ -18,6 +18,6 @@ public class Wallet : MonoBehaviour
 
     private void OnCoinCollected()
     {
-        CoinsCollectedCount += 1;
+        CoinsCollectedCount++;
     }
 }

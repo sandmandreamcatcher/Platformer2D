@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class FinishGame : MonoBehaviour
 {
     [SerializeField] private Spawner _spawner;
+
     private Player _player;
     private Wallet _wallet;
 
@@ -43,7 +44,7 @@ public class FinishGame : MonoBehaviour
 
     private void CheckGoalsCoins()
     {
-        if (_wallet.CoinsCollectedCount >= _spawner.SpawnedCoins)
+        if (_wallet.CoinsCollectedCount >= _spawner.SpawnedItems)
             DeclareWinner();
     }
 }
