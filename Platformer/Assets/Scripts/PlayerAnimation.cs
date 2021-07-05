@@ -17,43 +17,43 @@ public class PlayerAnimation : MonoBehaviour
         _animator = GetComponent<Animator>();
         _sprite = GetComponent<SpriteRenderer>();
         _movement = GetComponent<PlayerMovement>();
-        _player.Dead += PlayDeathAnimation;
-        _player.OnAir += PlayJumpAnimation;
-        _movement.Run += PlayRunAnimation;
-        _movement.Stopped += PlayIdleAnimation;
-        _movement.DirectionTurned += FlipPlayerSprite;
+        _player.Died += OnDied;
+        _player.Falled += OnFalled;
+        _movement.Run += OnRun;
+        _movement.Stopped += OnStopped;
+        _movement.DirectionTurned += OnDirectionTurned;
     }
 
     private void OnDestroy()
     {
-        _player.Dead -= PlayDeathAnimation;
-        _player.OnAir -= PlayJumpAnimation;
-        _movement.Run -= PlayRunAnimation;
-        _movement.Stopped -= PlayIdleAnimation;
-        _movement.DirectionTurned -= FlipPlayerSprite;
+        _player.Died -= OnDied;
+        _player.Falled -= OnFalled;
+        _movement.Run -= OnRun;
+        _movement.Stopped -= OnStopped;
+        _movement.DirectionTurned -= OnDirectionTurned;
     }
 
-    private void PlayDeathAnimation()
+    private void OnDied()
     {
         _animator.SetBool("PlayerDead", true);
     }
 
-    private void PlayJumpAnimation(bool isJumping)
+    private void OnFalled(bool isJumping)
     {
         _animator.SetBool("IsJumping", isJumping);
     }
 
-    private void PlayRunAnimation()
+    private void OnRun()
     {
         _animator.SetFloat("Speed", Mathf.Abs(_movement.MoveSpeed));
     }
 
-    private void PlayIdleAnimation()
+    private void OnStopped()
     {
         _animator.SetFloat("Speed", Mathf.Abs(0));
     }
 
-    private void FlipPlayerSprite()
+    private void OnDirectionTurned()
     {
         if (_sprite.flipX)
             _sprite.flipX = false;
