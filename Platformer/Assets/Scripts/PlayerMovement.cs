@@ -35,9 +35,9 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.D))
-            ToRun(_moveDirectionRight);
+            Move(_moveDirectionRight);
         if (Input.GetKey(KeyCode.A))
-            ToRun(_moveDirectionLeft);
+            Move(_moveDirectionLeft);
         if (_playerBody.velocity.x == 0)
             Stopped?.Invoke();
     }
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             _playerBody.velocity = _jumpForce * Vector2.up;
     }
 
-    private void ToRun(int direction)
+    private void Move(int direction)
     {
         if (_currentDirection != direction)
         {
